@@ -1,0 +1,14 @@
+{
+  "name": "graphteste",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-graphql": "^0.7.1",
+    "graphql": "^14.1.1",
+    "graphql-tools": "^4.0.4",
+    "knex": "^0.16.3",
+    "sqlite": "^3.0.2"
+  }
+}
