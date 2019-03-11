@@ -2,13 +2,23 @@ const db = require('../config/database')
 
 module.exports = {
   Query: {
-    async getUser(_, { id }) {
+    async user(_, { id }) {
+      if (id <= 0) {
+        throw 'O parametro ID tem quer ser maior que zero'
+      }
       return await db('users')
         .where({ id })
         .first()
     },
-    async getUsers() {
+    async users(_, { page = 1 }) {
+      if (page <= 0) {
+        throw 'O parametro PAGE tem que ser  maior que zero'
+      }
+      const limit = 3
+      let offset = (page - 1) * limit
       return await db('users')
+        .offset(offset)
+        .limit(limit)
     }
   },
   Mutation: {

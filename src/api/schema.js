@@ -1,30 +1,29 @@
 const resolvers = require('./resolvers')
 const { makeExecutableSchema } = require('graphql-tools')
 
-const userAttribs = `
+const typeDefs = `
+  type User {
+    id: ID
+    name: String
+    email: String
+    password: String
+  }
+
+  type Query {
+    user(id: ID!): User
+    users(page: Int): [User]
+  }
+
+  input UserInput {
     id: ID
     name: String!
     email: String!
     password: String!
-`
+  }
 
-const typeDefs = `
-    type User {
-        ${userAttribs}
-    }
-
-    type Query {
-        getUser(id: ID!): User
-        getUsers: [User]
-    }
-
-    input UserInput {
-        ${userAttribs}
-    }
-
-    type Mutation {
-        createUser(input: UserInput): User
-    }
+  type Mutation {
+    createUser(input: UserInput): User
+  }
 `
 
 module.exports = makeExecutableSchema({ typeDefs, resolvers })
